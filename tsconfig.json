@@ -68,6 +68,7 @@
     },
     "exclude": [
         "test",
-        "test-data"
+        "test-data",
+        "dist"
     ]
 }
