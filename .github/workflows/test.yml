@@ -24,4 +24,4 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Run tests
-        run: pnpm test -- --watchAll=false
+        run: pnpm run test -- --watchAll=false
