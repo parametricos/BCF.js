@@ -196,7 +196,7 @@ export class Markup {
       `${this.topic.guid}/${viewpoint.snapshot}`
     );
     if (fileData) {
-      return btoa(String.fromCharCode.apply(null, Array.from(fileData)));
+      return uint8ToBase64(fileData);
     }
   };
 
@@ -209,7 +209,17 @@ export class Markup {
     if (!guid || !this.topic) return;
     const fileData = this.reader.getEntry(`${this.topic.guid}/${guid}`);
     if (fileData) {
-      return btoa(String.fromCharCode.apply(null, Array.from(fileData)));
+      return uint8ToBase64(fileData);
     }
   };
+}
+
+function uint8ToBase64(bytes: Uint8Array): string {
+  let binary = "";
+  const chunkSize = 0x8000; // 32k chunks
+  for (let i = 0; i < bytes.length; i += chunkSize) {
+    const chunk = bytes.subarray(i, i + chunkSize);
+    binary += String.fromCharCode.apply(null, chunk as any);
+  }
+  return btoa(binary);
 }
