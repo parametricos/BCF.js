@@ -19,6 +19,6 @@ jobs:
         with:
           node-version: "22"
       - name: Install dependencies
-        run: npm install --immutable
+        run: pnpm install
       - name: Run tests
-        run: npm test -- --watchAll=false
+        run: pnpm test -- --watchAll=false
